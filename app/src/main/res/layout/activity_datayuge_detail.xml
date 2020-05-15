@@ -62,8 +62,7 @@
             android:layout_alignStart="@+id/datayugeproTitlee"
 
             android:layout_below="@+id/datayugeproTitlee"
-            android:layout_weight="1"
-            android:autoSizeTextType="uniform" />
+            android:layout_weight="1" />
 
         <Button
             android:id="@+id/button2"
@@ -102,8 +101,7 @@
             android:layout_alignStart="@+id/datayugeproTitlee"
 
             android:layout_below="@+id/datayugeproTitlee"
-            android:layout_weight="1"
-            android:autoSizeTextType="uniform" />
+            android:layout_weight="1" />
 
         <Button
             android:id="@+id/button4"

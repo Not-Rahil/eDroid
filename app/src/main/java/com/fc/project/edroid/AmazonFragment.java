@@ -193,12 +193,13 @@ ProgressBar pb;
                 e.printStackTrace();
             } catch (FileNotFoundException e) {
 
+                //Log.d("output",e.toString());
 
                 handler.post(new Runnable() {
 
                     @Override
                     public void run() {
-                        Toast.makeText(getContext(), "Too many attempts on amazon tab, hold your horses", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getContext(), "Amazon original API deprecated, check others tab", Toast.LENGTH_LONG).show();
 
                     }
                 });

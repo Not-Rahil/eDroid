@@ -6,6 +6,7 @@ import android.os.AsyncTask;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -37,7 +38,7 @@ public class datayuge_detail extends AppCompatActivity {
     TextView tvTitle;
 
     int flag;
-    String appid="H3jyQd8owEXnHW32UBXXMUXgpWMr4m9QyHb";
+    String appid="X9TwjmqyksEr4ewhDo100zkpOTOfpXJ7O1l";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,7 +92,8 @@ public class datayuge_detail extends AppCompatActivity {
     //                    products.imgurl=f1.getString("product_image");
                         JSONArray stores=data1.getJSONArray("stores");
                         int n=0;
-                        for(int j=4;j<stores.length();j++){
+                        Log.d("stores", stores.toString());
+                        for(int j=0;j<stores.length();j++){
                             //for different stores
                             JSONObject allstores=stores.getJSONObject(j);   // 0 1 2 3 4
                             Iterator<String> keys= allstores.keys();
@@ -220,7 +222,7 @@ public class datayuge_detail extends AppCompatActivity {
             handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    if(flag==0) Toast.makeText(datayuge_detail.this, "Product not available in other stores, Check in Amazon,Flipkart and Ebay",Toast.LENGTH_LONG).show();
+                    if(flag==0) Toast.makeText(datayuge_detail.this, "Product not available in any store",Toast.LENGTH_LONG).show();
 
                 }
             }, 1000);
@@ -243,7 +245,7 @@ public class datayuge_detail extends AppCompatActivity {
         } catch (MalformedURLException e) {
             e.printStackTrace();
         } catch (FileNotFoundException e) {
-                    Toast.makeText(this, "Too many attempts on others tab, search again", Toast.LENGTH_LONG).show();
+                    Toast.makeText(this, "Too many API calls on others tab, search again", Toast.LENGTH_LONG).show();
             e.printStackTrace();
         } catch(IOException e) {
             e.printStackTrace();

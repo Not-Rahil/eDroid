@@ -6,6 +6,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -70,7 +71,7 @@ query=query1;
                 }
 else {
                     EbayFragment.Task2 t1 = new EbayFragment.Task2();
-                    t1.execute("http://svcs.ebay.com/services/search/FindingService/v1?" +
+                    t1.execute("https://svcs.ebay.com/services/search/FindingService/v1?" +
                             "OPERATION-NAME=findItemsByKeywords&SERVICE-VERSION=1.0.0&SECURITY-APPNAME=" + Appid + "" +
                             "&GLOBAL-ID=EBAY-IN&RESPONSE-DATA-FORMAT=JSON&REST-PAYLOAD&sortOrder=BestMatch&keywords=" + product);
 
@@ -91,7 +92,7 @@ else {
         }
         else {
             EbayFragment.Task2 t1 = new EbayFragment.Task2();
-            t1.execute("http://svcs.ebay.com/services/search/FindingService/v1?" +
+            t1.execute("https://svcs.ebay.com/services/search/FindingService/v1?" +
                     "OPERATION-NAME=findItemsByKeywords&SERVICE-VERSION=1.0.0&SECURITY-APPNAME=" + Appid + "" +
                     "&GLOBAL-ID=EBAY-IN&RESPONSE-DATA-FORMAT=JSON&REST-PAYLOAD&sortOrder=BestMatch&keywords=" + product);
 
@@ -125,12 +126,14 @@ else {
                 Toast.makeText(getActivity(), "URL Malformed", Toast.LENGTH_SHORT).show();
                 e.printStackTrace();
             } catch (IOException e) {
+
                 e.printStackTrace();
             }
 
             if(jsonstr!=null){
                 try{
                     JSONObject jsonObject=new JSONObject(jsonstr);
+                    //String result = getJSONUrl(jsonstr);
                     JSONArray fibkr=jsonObject.getJSONArray("findItemsByKeywordsResponse");
                     JSONObject f1=fibkr.getJSONObject(0);
                     JSONArray search=f1.getJSONArray("searchResult");

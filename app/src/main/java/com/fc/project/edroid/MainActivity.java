@@ -23,6 +23,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.text.Html;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -64,19 +65,13 @@ public class
 MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    //Button btnSearch, btnAmazon, btnEbay, btnDatayuge;
-    Button btnSearch,btnSpeak;
-    TextView textView;
-    //EditText serachItem;
+    Button btnSearch;
     FloatingSearchView serachItem;
     String dataa;
-    ViewPager viewPager;
     FirebaseAuth mAuth;
     private RecyclerView recyclerView,recyclerView1;
     private AdapterOffers adapterOffers;
     private AdapterDotd adapterDod;
-
-    String[] productnames={"iphone","dell","nokia","samsung"};
     public List<Productsoffers> data=new ArrayList<>();
     public List<Productsoffers> data1=new ArrayList<>();
     @Override
@@ -89,28 +84,10 @@ MainActivity extends AppCompatActivity
         int orientaton = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT;
         setRequestedOrientation(orientaton);
 
-
-//TODO extract (categorySpeciificInfoV1,detailedSpecs)
-        //TODO handle nullPointerEXception
-//        viewPager=findViewById(R.id.viewPager);
-//        ViewPagerAdapter viewPagerAdapter=new ViewPagerAdapter(this);
-//        viewPager.setAdapter(viewPagerAdapter);
-//        Timer timer = new Timer();
-//        timer.scheduleAtFixedRate(new MyTimerTask(),2000,4000);
-//        btnSearch=findViewById(R.id.btnsearch);
-//        btnSpeak=findViewById(R.id.btnspeak);
         mAuth=FirebaseAuth.getInstance();
-//        textView=findViewById(R.id.textView);
-//        String text="<font color=#3F51B5>E</font><font color=#f50808>d</font><font color=#ff6d40>r</font><font color=#3F51B5>o</font>" +
-//                "<font color=#08f563>i</font><font color=#f50808>d</font>";
-//        textView.setText(Html.fromHtml(text));
-////        etProduct = findViewById(R.id.etProduct);
         serachItem=findViewById(R.id.Etsearch);
-       // tvList = findViewById(R.id.tvList);
-        Random random = new Random();
-        int index = random.nextInt(productnames.length);
 
-        //productImg=findViewById(R.id.imageView);
+
 
         ConnectivityManager cm =
                 (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -120,15 +97,6 @@ MainActivity extends AppCompatActivity
 
         if (!(networkInfo != null && networkInfo.isConnected())) {
             Toast.makeText(MainActivity.this, "Please Check Your network", Toast.LENGTH_SHORT).show();
-            btnSearch.setEnabled(false);
-//            Snackbar.make(, "No Internet Connection.", Snackbar.LENGTH_INDEFINITE)
-//                    .setAction("Settings", new View.OnClickListener() {
-//                        @Override
-//                        public void onClick(View view) {
-//                            //startActivityForResult(new Intent(android.provider.Settings.ACTION_WIFI_SETTINGS), 0);
-//                        }
-//                    }).setActionTextColor(Color.WHITE).setActionTextColor(Color.RED)
-//                    .show();
 
         } else {
             Toast.makeText(MainActivity.this,
@@ -414,11 +382,6 @@ MainActivity extends AppCompatActivity
                 connection.connect();
                 InputStream is = connection.getInputStream();
                 BufferedReader br = new BufferedReader(new InputStreamReader(is));
-
-
-//                List<Products> data=new ArrayList<>();
-
-
                 while ((line = br.readLine()) != null)
                 {
                     jsonstr+=line +"\n";
@@ -432,6 +395,7 @@ MainActivity extends AppCompatActivity
             }
             if(jsonstr!=null){
                 try{
+
                     JSONObject jsonObject=new JSONObject(jsonstr);
                     JSONArray array=jsonObject.getJSONArray("dotdList");
                     for(int i=0;i<8;i++) {
@@ -530,6 +494,7 @@ MainActivity extends AppCompatActivity
             }
             if(jsonstr!=null){
                 try{
+
                     JSONObject jsonObject=new JSONObject(jsonstr);
                     JSONArray array=jsonObject.getJSONArray("allOffersList");
                     for(int i=0;i<20;i++) {

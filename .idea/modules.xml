@@ -2,8 +2,10 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/StudioProjects-eDroid.iml" filepath="$PROJECT_DIR$/StudioProjects-eDroid.iml" group="eDroid" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/eDroid.iml" filepath="$PROJECT_DIR$/eDroid.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/eDroid-app.iml" filepath="$PROJECT_DIR$/app/eDroid-app.iml" group="eDroid/app" />
     </modules>
   </component>
 </project>
